@@ -1,0 +1,2 @@
+../Core/Src/transfo.c:4:6:ClarkeParkTransform	48	static
+../Core/Src/transfo.c:13:6:InverseParkTransform	40	static
