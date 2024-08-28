@@ -5,8 +5,6 @@
  *      Author: taghl
  */
 #include <picontrol.h>
-#include"adc.h"
-#include"transfo.h"
 #include "main.h"
 float PI_Controller(float error) {
     float integral = 0.0f;

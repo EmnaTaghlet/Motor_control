@@ -13,7 +13,7 @@
 
 void motorcontrol()
 {
-	theta=gettheta();
+	theta=Read_theta();
 	sp=motor_speed;
 	Iqref=Speed_PI_Controller(sp_ref-sp);
 	Ia=GetPhaseACurrent();

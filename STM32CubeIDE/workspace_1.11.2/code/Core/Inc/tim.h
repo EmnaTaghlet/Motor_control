@@ -52,7 +52,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 /* USER CODE BEGIN Prototypes */
 void SVM(float Va, float Vb, float Vc);
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim);
-float gettheta();
+float Read_theta();
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
