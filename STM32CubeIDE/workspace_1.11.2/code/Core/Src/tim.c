@@ -446,9 +446,6 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
             capture_difference += 0xFFFF;
         }
 
-        motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
-
-        previous_capture = current_capture;
     }
     else if(htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2)
     {
@@ -461,9 +458,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
             capture_difference += 0xFFFF;
         }
 
-        motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
-
-        previous_capture = current_capture; }
+        }
     else if(htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3)
     {
 
@@ -475,11 +470,9 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
             capture_difference += 0xFFFF;
         }
 
-        motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
-
-        previous_capture = current_capture;
     }
-
+    motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
+    previous_capture = current_capture;
 
 }
 
