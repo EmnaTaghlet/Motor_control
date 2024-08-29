@@ -19,10 +19,10 @@ void motorcontrol()
 	Ia=GetPhaseACurrent();
 	Ib=GetPhaseBCurrent();
 	Ic=GetPhaseCCurrent();
-	ClarkeParkTransform( Ia,Ib,theta, &Id,&Iq);
+	ClarkeParkTransform(Ia,Ib,theta,&Id,&Iq);
 	Vd=PI_Controller(Idref-Id);
 	Vq=PI_Controller(Iqref-Iq);
-	InverseParkTransform( Vd, Vq, theta, &Valpha, &Vbeta);
+	InverseParkTransform(Vd,Vq,theta,&Valpha,&Vbeta);
 	SVM( Va, Vb, Vc);
 }
 

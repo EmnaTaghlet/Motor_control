@@ -68,6 +68,9 @@
  float Va=0.0f;
  float Vb=0.0f;
  float Vc=0.0f;
+ int current_capture = 0;
+ int capture_difference = 0;
+ int previous_capture[3]={0,0,0};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

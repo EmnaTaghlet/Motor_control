@@ -84,7 +84,9 @@ extern float Vbeta;
 extern float Va;
 extern float Vb;
 extern float Vc;
-
+extern int current_capture;
+extern int capture_difference;
+extern int previous_capture[3];
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

@@ -390,8 +390,7 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
     /**TIM3 GPIO Configuration
     PA7     ------> TIM3_CH2
     PB0     ------> TIM3_CH3
-    PC6     -
-    -----> TIM3_CH1
+    PC6     ------> TIM3_CH1
     */
     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_7);
 
@@ -409,70 +408,52 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 
 /* USER CODE BEGIN 1 */
 
-/*void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
-{
-    if(htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
-    {
-    	int previous_capture=0;
-    	int capture_difference=0;
-        int current_capture = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
 
-        if (current_capture >=  previous_capture)
-        {
-             capture_difference = current_capture - previous_capture;
-        }
-        else
-        {
-            capture_difference = (0xFFFF - previous_capture) + current_capture;
-        }
-
-        motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
-
-        previous_capture = current_capture;
-    }
-}*/
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
-    int current_capture = 0;
-    int capture_difference = 0;
-    int previous_capture=0;
+
     if(htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
     {
         current_capture = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
-        capture_difference = current_capture - previous_capture;
+        capture_difference = current_capture - previous_capture[0];
 
-        if (capture_difference < 0)
-        {
-            capture_difference += 0xFFFF;
-        }
+               if (capture_difference < 0)
+               {
+                   capture_difference += 0xFFFF;
+               }
 
+        motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
+        previous_capture[0] = current_capture;
     }
     else if(htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2)
     {
 
         current_capture = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2);
-        capture_difference = current_capture - previous_capture;
+        capture_difference = current_capture - previous_capture[1];
 
-        if (capture_difference < 0)
-        {
-            capture_difference += 0xFFFF;
-        }
+               if (capture_difference < 0)
+               {
+                   capture_difference += 0xFFFF;
+               }
 
-        }
+        motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
+        previous_capture[1] = current_capture;
+    }
     else if(htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3)
     {
 
         current_capture = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_3);
-        capture_difference = current_capture - previous_capture;
+        capture_difference = current_capture - previous_capture[2];
 
-        if (capture_difference < 0)
-        {
-            capture_difference += 0xFFFF;
-        }
+               if (capture_difference < 0)
+               {
+                   capture_difference += 0xFFFF;
+               }
+
+        motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
+        previous_capture[2] = current_capture;
 
     }
-    motor_speed = (float)SystemCoreClock / (float)(htim->Init.Prescaler + 1) / (float)capture_difference;
-    previous_capture = current_capture;
 
 }
 
@@ -482,7 +463,7 @@ float Read_theta()
 
      theta = ((float)encoder_position / (float)ENCODER_RESOLUTION) * 360.0f;
       return theta;
-  }
+}
 void SVM(float Va, float Vb, float Vc) //Space Vector Modulation
 {
 

@@ -25,10 +25,10 @@ float Speed_PI_Controller(float speedError)
 
 	    if (output > Max) {
 	        output = Max;
-	        Spi -= speedError * Ki_sp;
+	        Spi-= speedError * Ki_sp;
 	    } else if (output < -Max) {
 	        output = -Max;
-	       Spi -= speedError * Ki_sp;
+	       Spi-= speedError * Ki_sp;
 	    }
 
 	    return output;
