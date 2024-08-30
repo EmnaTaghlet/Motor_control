@@ -7,7 +7,7 @@
 #include <picontrol.h>
 #include "main.h"
 float PI_Controller(float error) {
-    float integral = 0.0f;
+    static float integral = 0.0f;
     float Kp = 0.1f;
     float Ki = 0.01f;
     integral += error;
@@ -15,7 +15,7 @@ float PI_Controller(float error) {
 }
 float Speed_PI_Controller(float speedError)
 {
-	float Spi=0.0f;
+	static float Spi=0.0f;
 	float Ki_sp=0.01f;
 	float Kp_sp=0.1f;
 	float Max=0.0f;

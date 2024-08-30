@@ -10,4 +10,4 @@
 ../Core/Src/tim.c:379:6:HAL_TIM_Base_MspDeInit	16	static
 ../Core/Src/tim.c:412:6:HAL_TIM_IC_CaptureCallback	16	static
 ../Core/Src/tim.c:460:7:Read_theta	16	static
-../Core/Src/tim.c:467:6:SVM	24	static
+../Core/Src/tim.c:466:6:SVM	24	static

@@ -15,3 +15,8 @@ void InverseParkTransform(float V_d, float V_q, float theta, float *V_alpha, flo
     *V_alpha = V_d * cosf(theta) - V_q * sinf(theta);
     *V_beta = V_d * sinf(theta) + V_q * cosf(theta);
 }
+void InverseClarkeTransform(float Valpha, float Vbeta, float *Va, float *Vb, float *Vc) {
+    *Va = Valpha;
+    *Vb = -1/2 * Valpha + (sqrtf(3.0f) / 2.0f) * Vbeta;
+    *Vc = -1/2 * Valpha - (sqrtf(3.0f) / 2.0f) * Vbeta;
+}

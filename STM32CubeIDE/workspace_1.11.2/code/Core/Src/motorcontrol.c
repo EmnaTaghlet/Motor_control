@@ -23,6 +23,7 @@ void motorcontrol()
 	Vd=PI_Controller(Idref-Id);
 	Vq=PI_Controller(Iqref-Iq);
 	InverseParkTransform(Vd,Vq,theta,&Valpha,&Vbeta);
+	InverseClarkeTransform(Valpha,Vbeta,&Va,&Vb,&Vc);
 	SVM( Va, Vb, Vc);
 }
 

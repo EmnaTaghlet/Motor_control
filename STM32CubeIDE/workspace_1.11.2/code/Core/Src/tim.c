@@ -21,7 +21,7 @@
 #include "tim.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "math.h"
 /* USER CODE END 0 */
 
 TIM_HandleTypeDef htim1;
@@ -460,8 +460,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 float Read_theta()
 {
       int16_t encoder_position = __HAL_TIM_GET_COUNTER(&htim2);
-
-     theta = ((float)encoder_position / (float)ENCODER_RESOLUTION) * 360.0f;
+      theta = ((float)encoder_position / (float)ENCODER_RESOLUTION) * 2.0f * M_PI;
       return theta;
 }
 void SVM(float Va, float Vb, float Vc) //Space Vector Modulation
